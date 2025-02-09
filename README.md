@@ -32,3 +32,5 @@ The **Investment Tracker Web App** is a Python-based application designed to hel
 - **Database**: Firestore (Cloud Firestore for user data & portfolio storage)
 - **Deployment**: Docker, AWS/GCP/Azure
 
+Sources:
+- SimFin API: https://simfin.readme.io/reference/getting-started-1
