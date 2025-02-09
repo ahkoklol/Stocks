@@ -13,7 +13,7 @@ client = OpenAI(
 )
 
 # Set up Streamlit UI
-st.title("📈 Stock Market Expert Chatbot with Multiple File Uploads")
+st.title("Stock Market Expert Chatbot")
 
 # Initialize session state for messages & uploaded file content
 if "messages" not in st.session_state:
