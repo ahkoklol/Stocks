@@ -13,51 +13,63 @@ client = OpenAI(
 )
 
 # Set up Streamlit UI
-st.title("📈 Stock Market Expert Chatbot with File Upload")
+st.title("📈 Stock Market Expert Chatbot with Multiple File Uploads")
 
-# Initialize chat session
+# Initialize session state for messages & uploaded file content
 if "messages" not in st.session_state:
     st.session_state.messages = [
-        {"role": "system", "content": "You are a stock market expert specializing in financial insights, investment strategies, and stock analysis. Provide data-driven advice and clear explanations."}
+        {"role": "system", "content": "You are a stock market expert specializing in financial insights, investment strategies, and stock analysis. Provide data-driven advice and clear explanations. Give insights on whether to invest in the analyzed company or not (yes or no response)."}
     ]
 
-# File uploader
-uploaded_file = st.file_uploader("Upload a financial report (PDF, CSV, TXT)", type=["pdf", "csv", "txt"])
+if "uploaded_files_content" not in st.session_state:
+    st.session_state.uploaded_files_content = ""
 
-file_content = ""
+# Multiple file uploader
+uploaded_files = st.file_uploader(
+    "Upload financial reports (PDF, CSV, TXT)", 
+    type=["pdf", "csv", "txt"], 
+    accept_multiple_files=True
+)
 
-if uploaded_file:
-    file_name = uploaded_file.name.lower()
-    
-    if file_name.endswith(".txt"):
-        file_content = uploaded_file.getvalue().decode("utf-8")
+# Process uploaded files
+if uploaded_files:
+    new_file_content = ""
+    for uploaded_file in uploaded_files:
+        file_name = uploaded_file.name.lower()
+        file_content = ""
 
-    elif file_name.endswith(".csv"):
-        df = pd.read_csv(uploaded_file)
-        file_content = df.to_string()
+        if file_name.endswith(".txt"):
+            file_content = uploaded_file.getvalue().decode("utf-8")
 
-    elif file_name.endswith(".pdf"):
-        pdf_reader = PyPDF2.PdfReader(uploaded_file)
-        for page in pdf_reader.pages:
-            file_content += page.extract_text() + "\n"
+        elif file_name.endswith(".csv"):
+            df = pd.read_csv(uploaded_file)
+            file_content = df.to_string()
 
-    st.success(f"Uploaded: {file_name}")
+        elif file_name.endswith(".pdf"):
+            pdf_reader = PyPDF2.PdfReader(uploaded_file)
+            for page in pdf_reader.pages:
+                file_content += page.extract_text() + "\n"
+
+        new_file_content += f"\n\n--- File: {file_name} ---\n\n" + file_content[:5000]  # Truncate large files
+        st.success(f"Uploaded: {file_name}")
+
+    # **Store uploaded file contents persistently**
+    st.session_state.uploaded_files_content += new_file_content
 
 # Display chat history
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+        st.write(message["content"])  # ✅ Use `st.write()` for better formatting
 
 # User input
 if prompt := st.chat_input("Ask about stock market trends, investment strategies, or specific stocks..."):
-    # If a file is uploaded, add its content to the prompt
-    if file_content:
-        prompt = f"User query: {prompt}\n\nFinancial Document Data:\n{file_content[:5000]}"  # Truncate if too long
+    # Include stored file contents in the prompt
+    final_prompt = f"User query: {prompt}\n\nFinancial Document Data:\n{st.session_state.uploaded_files_content}"
 
-    st.session_state.messages.append({"role": "user", "content": prompt})
+    st.session_state.messages.append({"role": "user", "content": final_prompt})
 
     with st.chat_message("user"):
-        st.markdown(prompt)
+        st.write(prompt)
 
     # Get response from Mistral 7B
     with st.chat_message("assistant"):
@@ -73,8 +85,8 @@ if prompt := st.chat_input("Ask about stock market trends, investment strategies
         for chunk in response:
             token = chunk.choices[0].delta.content
             if token:
-                full_reply += token  # Append token to full reply
-                reply_container.markdown(full_reply)  # Update the placeholder
+                full_reply += token.replace("_", "\\_").replace("*", "\\*")  # ✅ Escape Markdown special characters
+                reply_container.write(full_reply)  # ✅ Use `st.write()` for proper formatting
 
     # Store assistant response
     st.session_state.messages.append({"role": "assistant", "content": full_reply})
