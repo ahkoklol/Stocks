@@ -3,6 +3,13 @@ from openai import OpenAI
 import pandas as pd
 import PyPDF2
 
+st.set_page_config(
+    page_title = "Name to be chosen",
+    page_icon = "📈",
+)
+
+st.title("Stock Market Expert Chatbot")
+
 # Load API Key from secrets
 secret_key = st.secrets["OPENAI_API_KEY"]["key"]
 
@@ -11,9 +18,6 @@ client = OpenAI(
     base_url="https://api.mistral.ai/v1/",
     api_key=secret_key,
 )
-
-# Set up Streamlit UI
-st.title("Stock Market Expert Chatbot")
 
 # Initialize session state for messages & uploaded file content
 if "messages" not in st.session_state:

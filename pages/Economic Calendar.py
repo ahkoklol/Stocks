@@ -5,4 +5,4 @@ st.set_page_config(
     page_icon = "📈",
 )
 
-st.title("Home Page")
+st.title("Economic Calendar")

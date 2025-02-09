@@ -5,13 +5,12 @@ The **Investment Tracker Web App** is a Python-based application designed to hel
 
 ## Features and pages
 - **Homepage**: daily/weekly/monthly/yearly/ytd stock price changes, total gains/losses
-- **AI Stock Analyser Chatbot**: Use Large Language Models (Mistal 7b) to predict stock prices. Will use advanced quantitative tools for evaluating options, derivatives, and hedging strategies.
+- **AI Stock Analyser Chatbot**: Use a Large Language Model (Mistal 7b) to predict stock prices. Will use advanced quantitative tools for evaluating options, derivatives, and hedging strategies.
 - **Watchlist**: Add stocks to watchlist and track their performance. Receive alerts on significant market movements and stock price changes.
 - **Portfolio**: Track and manage your investment portfolio. AI-driven analysis of portfolio risk and diversification.
 - **Economic Calendar**: View upcoming economic events and their impact on the market.
 - **Stock Screener**: Filter stocks based on user-defined criteria. AI will analyse the company's financial statements and provide insights on fundamentals and sentiment.
 - **News Feed**: Receive relevant news based on the stocks in the user's portfolio and watchlist.
-- **LLM Investment Advice**: Get AI-generated investment advice by leveraging a large language model (LLM).
 
 To come:
 - **Deep Learning Analysis**:
