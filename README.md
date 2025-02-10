@@ -19,7 +19,7 @@ To come:
 
 
 ## Tech Stack
-- **Backend**: Python, Streamlit
+- **Backend**: Python
 - **APIs & Data Sources**:
   - yFinance API (Real-time stock data)
   - News API (Financial news updates)
