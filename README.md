@@ -1,7 +1,7 @@
 # Investment Tracker Web App
 
 ## Overview
-The **Investment Tracker Web App** is a Python-based application designed to help users manage their investments efficiently. This app leverages the **yFinance API** to track real-time stock price variations, fetch news updates related to user portfolios, and provide AI-driven investment insights using transformer neural network models. Additionally, it incorporates machine learning pipeline to analyze financial statements,  assess company sentiments and predict stock prices. Meta Llama 3 will be used as Large Language Model (LLM) with a local Ollama server to run a sentiment analysis of recent financial new headlines scraped from the web using the News API. 
+The **Investment Tracker Web App** is a Python-based application designed to help users manage their investments efficiently. This app leverages the **yFinance API** and the **SimFin API** to track real-time stock price variations, fetch news updates related to user portfolios, and provide AI-driven investment insights using transformer neural network models. Additionally, it incorporates machine learning pipeline to analyze financial statements,  assess company sentiments and predict stock prices. DeepSeek R1 will be used as Large Language Model (LLM) with a local Ollama server to run a sentiment analysis of recent financial new headlines scraped from the web using the News API. 
 
 ## Features and pages
 - **Homepage**: daily/weekly/monthly/yearly/ytd stock price changes, total gains/losses
@@ -16,7 +16,6 @@ To come:
 - **Deep Learning Analysis**:
   - Evaluate financial statements for insights into company performance.
   - Perform sentiment analysis on company-related news and reports.
-
 
 ## Tech Stack
 - **Backend**: Python
@@ -36,3 +35,6 @@ To come:
 
 Sources:
 - SimFin API: https://simfin.readme.io/reference/getting-started-1
+- yFinance API: https://pypi.org/project/yfinance/
+- News API: 
+- DeepSeek API: https://api-docs.deepseek.com/
