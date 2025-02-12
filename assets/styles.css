@@ -1,0 +1,65 @@
+/* Hide footer, menu, and top black bar */
+footer {
+    visibility: hidden;
+}
+#MainMenu {
+    visibility: hidden;
+}
+[data-testid="stHeader"] {
+    display: none;
+}
+[data-testid="stToolbar"] {
+    display: none !important; /* Hides the black bar */
+}
+
+/* Adjust the main container to take full width */
+div.block-container {
+    width: 100vw;  /* Use full viewport width */
+    max-width: 100%;
+    padding-left: 5rem;  /* Reduce left padding */
+    padding-right: 1rem; /* Reduce right padding */
+}
+
+/* Portfolio Table Styling */
+.stock-table {
+    width: 100%;  /* Ensure it uses full width */
+    max-width: 100%;
+    color: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Increase space between headers and first stock */
+.stock-title {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+    padding-bottom: 15px;  /* Adds space below column headers */
+    margin-bottom: 10px;   /* Additional margin for separation */
+}
+
+
+/* Stock Data Styling */
+.stock-data {
+    font-size: 16px;
+    padding: 10px;
+    text-align: left;
+    flex: 1;
+}
+
+/* Profit and Loss Colors */
+.gain {
+    color: #00C853;
+}
+.loss {
+    color: #FF3D00;
+}
+
+/* Make the sidebar smaller to free up space */
+div[data-testid="stSidebar"] {
+    min-width: 180px;
+    max-width: 180px;
+}
