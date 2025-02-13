@@ -41,6 +41,21 @@ div.block-container {
     margin-bottom: 10px;   /* Additional margin for separation */
 }
 
+/* Stock Ticker Button Styling */
+.stock-ticker-button {
+    background-color: white;  /* White background */
+    border: none !important;  /* Remove borders */
+    color: black;  /* Text color */
+    font-size: 18px;  /* Adjust font size */
+    font-weight: bold;
+    cursor: pointer;  /* Pointer cursor */
+    text-align: left;
+}
+
+/* Hover Effect */
+.stock-ticker-button:hover {
+    background-color: #f5f5f5;  /* Light grey hover effect */
+}
 
 /* Stock Data Styling */
 .stock-data {

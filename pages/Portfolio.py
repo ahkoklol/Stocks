@@ -43,7 +43,10 @@ for stock in portfolio:
     row = st.columns([1.5, 1, 1, 1, 1, 1, 1, 1, 1])
     
     # Stock Name and Ticker
-    row[0].markdown(f"**{stock['ticker']}**  \n<small>{stock['name']}</small>", unsafe_allow_html=True)
+    row[0].markdown(
+        f'<button class="stock-ticker-button">{stock["ticker"]}</button>  <br><small>{stock["name"]}</small>',
+        unsafe_allow_html=True
+    )
 
     # Units
     row[1].markdown(f"<div class='stock-data'>{stock['units']:.5f}</div>", unsafe_allow_html=True)
